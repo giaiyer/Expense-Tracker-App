@@ -15,7 +15,7 @@ public class ExpenseTrackerApplication {
     public CommandLineRunner startupMessage() {
         return args -> {
             System.out.println("\nExpense Tracker is running!");
-            System.out.println("🌐 Access it at: http://localhost:8080/expense-form.html\n");
+            System.out.println("Access it at: http://localhost:8080/expense-form.html\n");
         };
     }
 }
