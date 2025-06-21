@@ -1,0 +1,39 @@
+2025-06-21 18:08:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EXPENSE" not found (this database is empty); SQL statement:
+select e1_0.id,e1_0.amount,e1_0.category,e1_0.date from expense e1_0 [42104-214]
+2025-06-21 18:08:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EXPENSE" not found (this database is empty); SQL statement:
+insert into expense (amount,category,date,id) values (?,?,?,default) [42104-214]
+2025-06-21 18:08:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EXPENSE" not found (this database is empty); SQL statement:
+select e1_0.id,e1_0.amount,e1_0.category,e1_0.date from expense e1_0 [42104-214]
+2025-06-21 18:08:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EXPENSE" not found (this database is empty); SQL statement:
+insert into expense (amount,category,date,id) values (?,?,?,default) [42104-214]
+2025-06-21 18:08:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EXPENSE" not found (this database is empty); SQL statement:
+select e1_0.id,e1_0.amount,e1_0.category,e1_0.date from expense e1_0 [42104-214]
+2025-06-21 18:09:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EXPENSE" not found (this database is empty); SQL statement:
+insert into expense (amount,category,date,id) values (?,?,?,default) [42104-214]
+2025-06-21 18:09:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EXPENSE" not found (this database is empty); SQL statement:
+select e1_0.id,e1_0.amount,e1_0.category,e1_0.date from expense e1_0 [42104-214]
+2025-06-21 18:10:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
+2025-06-21 18:10:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
+2025-06-21 18:12:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
+2025-06-21 18:12:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
+2025-06-21 18:13:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
+2025-06-21 18:14:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
+2025-06-21 18:17:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
+2025-06-21 18:18:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
+2025-06-21 18:18:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]

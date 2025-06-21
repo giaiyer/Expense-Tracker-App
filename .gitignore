@@ -1,0 +1,27 @@
+# Java
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Logs
+*.log
+
+# IntelliJ
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# Environment
+.env

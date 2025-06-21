@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Expense Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fefefe;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .danger {
+      background-color: #e74c3c;
+    }
+
+    .danger:hover {
+      background-color: #c0392b;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f3f3f3;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      background: #f6f6f6;
+      border-radius: 5px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Expense Tracker</h2>
+  <h3>Add an Expense</h3>
+
+  <form id="expenseForm">
+    <label for="category">Category:</label>
+    <select id="category" name="category" required>
+      <option value="">Select a category</option>
+      <option value="Groceries">Groceries</option>
+      <option value="Entertainment">Entertainment</option>
+      <option value="Bills">Bills</option>
+    </select>
+
+    <label for="amount">Amount (₹):</label>
+    <input type="number" id="amount" name="amount" required />
+
+    <button type="submit">Submit Expense</button>
+  </form>
+
+  <button class="danger" onclick="clearExpenses()">Clear All Expenses</button>
+
+  <div class="result" id="result"></div>
+
+  <h3>All Expenses</h3>
+  <table id="expenseTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Category</th>
+        <th>Amount (₹)</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('expenseForm');
+    const result = document.getElementById('result');
+    const tableBody = document.querySelector('#expenseTable tbody');
+
+    async function fetchExpenses() {
+      try {
+        const res = await fetch('/api/expenses');
+        const data = await res.json();
+        tableBody.innerHTML = '';
+        data.forEach(exp => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${exp.id}</td>
+            <td>${exp.category}</td>
+            <td>₹${exp.amount}</td>
+            <td>${exp.date}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      } catch (err) {
+        result.style.display = "block";
+        result.innerHTML = "Error loading expenses.";
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const category = document.getElementById('category').value;
+      const amount = parseFloat(document.getElementById('amount').value);
+
+      const response = await fetch('/api/expenses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ category, amount })
+      });
+
+      const data = await response.json();
+      result.style.display = "block";
+      result.innerHTML = `
+        Expense Added:<br>
+        • Category: <b>${data.category}</b><br>
+        • Amount: ₹<b>${data.amount}</b><br>
+        • Date: ${data.date}
+      `;
+
+      form.reset();
+      fetchExpenses(); // Refresh table
+    });
+
+    async function clearExpenses() {
+      if (!confirm("Are you sure you want to delete all expenses?")) return;
+
+      const res = await fetch('/api/expenses/clear', { method: 'DELETE' });
+
+      if (res.ok) {
+        result.style.display = "block";
+        result.innerHTML = "All expenses cleared.";
+        fetchExpenses();
+      } else {
+        result.style.display = "block";
+        result.innerHTML = "Failed to clear expenses.";
+      }
+    }
+
+    fetchExpenses(); // Initial table load
+  </script>
+</body>
+</html>
